@@ -12,15 +12,27 @@
 <body>
     <div class="container">
         <div class="login">
-            <form action="">
+            <form action="/Login/validation" method="POST">
                 <h1>Login</h1>
                 <hr>
                 <p>Kelurahan Buaran Indah</p>
                 <label for="">NIK</label>
-                <input type="text" placeholder="Masukkan NIK" id="username" class="username">
-                <label for="">Password</label><input type="password" placeholder="Masukkan Password" id="password"
-                    class="password">
-                <button><a href="/DashboardUser">Login</a></button>
+                <input type="text" placeholder="Masukkan NIK" id="username"
+                    class="form-control <?= ($validation->hasError('username')) ? 'is-invalid' : ''; ?>"
+                    value="<?= old('username'); ?>" autofocus name="username">
+                <div class="invalid-feedback" style="color: red; padding-left: 10px; font-size: 12px;">
+                    <?= $validation->getError('username'); ?>
+                </div>
+
+                <label for="">Password</label>
+                <input type="password" placeholder="Masukkan Password" id="password"
+                    class="form-control <?= ($validation->hasError('password')) ? 'is-invalid' : ''; ?>"
+                    value="<?= old('password'); ?>" autofocus name="password">
+                <div class="invalid-feedback" style="color: red; padding-left: 10px; font-size: 12px;">
+                    <?= $validation->getError('password'); ?>
+                </div>
+
+                <button type="submit">Login</button>
                 <div class="signup-link">
                     <a href="/Registrasi">Registrasi</a>
                 </div>
